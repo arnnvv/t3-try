@@ -22,7 +22,7 @@ export default function HomePage(): JSX.Element {
   return (
     <main>
       <div className="flex flex-wrap gap-4">
-        {photos.map(
+        {[...photos, ...photos, ...photos, ...photos].map(
           (photo: { id: string; url: string }): JSX.Element => (
             <div key={photo.id} className="w-48">
               <img src={photo.url} alt="image" />
@@ -30,7 +30,6 @@ export default function HomePage(): JSX.Element {
           ),
         )}
       </div>
-      Hello(galary in progress)
     </main>
   );
 }
