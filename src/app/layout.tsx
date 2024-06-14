@@ -3,7 +3,7 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import Providers from "./Providers";
-import Button from "components/Button";
+import TopNav from "./_components/TopNav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,16 +14,6 @@ export const metadata = {
   title: "GALLERY",
   description: "Gallery",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-};
-
-const TopNav = (): JSX.Element => {
-  return (
-    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
-      <div>Galary</div>
-
-      <Button text="Sign In" />
-    </nav>
-  );
 };
 
 export default function RootLayout({
