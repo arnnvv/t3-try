@@ -1,5 +1,7 @@
 import db from "~/server/db";
 
+export const dynamic = "force-dynamic";
+
 const photoUrls: string[] = [
   "https://www.boredpanda.com/blog/wp-content/uploads/2019/02/fake-news-photos-viral-photoshop-1-5c6fe612590ec__700.jpg",
   "https://www.boredpanda.com/blog/wp-content/uploads/2019/02/fake-news-photos-viral-photoshop-18-5c6fe631f2eb3__700.jpg",
