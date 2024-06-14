@@ -2,13 +2,17 @@
 import { type FC } from "react";
 import { toast } from "sonner";
 
-const Button: FC = (): JSX.Element => (
+interface ButtonProps {
+  text: string;
+}
+
+const Button: FC<ButtonProps> = ({ text }: ButtonProps): JSX.Element => (
   <button
     onClick={() => {
       toast.success("clicked");
     }}
   >
-    Sign In
+    {text}
   </button>
 );
 

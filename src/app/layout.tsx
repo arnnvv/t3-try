@@ -21,7 +21,7 @@ const TopNav = (): JSX.Element => {
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <div>Galary</div>
 
-      <Button />
+      <Button text="Sign In" />
     </nav>
   );
 };
