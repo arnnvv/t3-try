@@ -1,0 +1,19 @@
+import { type FC, type ReactNode } from "react";
+import { Toaster } from "sonner";
+
+interface ProvidersProps {
+  children: ReactNode;
+}
+
+const Providers: FC<ProvidersProps> = ({
+  children,
+}: ProvidersProps): JSX.Element => {
+  return (
+    <>
+      <Toaster position="top-center" richColors />
+      {children}
+    </>
+  );
+};
+
+export default Providers;
