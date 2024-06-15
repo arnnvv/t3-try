@@ -1,9 +1,11 @@
 "use client";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { UploadButton } from "~/utils/uploadthing";
 
 const TopNav = (): JSX.Element => {
+  const router = useRouter();
   return (
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <div>Galary</div>
@@ -18,7 +20,12 @@ const TopNav = (): JSX.Element => {
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UploadButton endpoint="imageUploader" />
+          <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={() => {
+              router.refresh();
+            }}
+          />
           <UserButton />
         </SignedIn>
       </div>

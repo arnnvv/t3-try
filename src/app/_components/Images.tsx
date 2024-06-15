@@ -23,7 +23,7 @@ const Images = async (): Promise<JSX.Element> => {
 
   return (
     <div className="flex flex-wrap gap-4">
-      {[...images, ...images, ...images, ...images].map(
+      {images.map(
         (photo: {
           id: number;
           name: string;
