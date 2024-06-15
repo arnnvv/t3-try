@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
-import { NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
-import { FileUploadData } from "uploadthing/types";
+import { type FileUploadData } from "uploadthing/types";
 import db from "~/server/db";
 import { images } from "~/server/db/schema";
 
@@ -11,7 +11,7 @@ const f = createUploadthing();
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB" } })
     .middleware(
-      ({
+      async ({
         req,
       }: {
         req: NextRequest;
@@ -20,7 +20,7 @@ export const ourFileRouter = {
       } & {
         files: readonly FileUploadData[];
         input: undefined;
-      }): { userId: string } => {
+      }): Promise<{ userId: string }> => {
         const { userId } = auth();
         if (!userId) throw new UploadThingError("Unauthorized");
         return { userId };
