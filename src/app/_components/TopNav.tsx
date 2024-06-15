@@ -1,6 +1,7 @@
 "use client";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { UploadButton } from "~/utils/uploadthing";
 
 const TopNav = (): JSX.Element => {
   return (
@@ -8,6 +9,7 @@ const TopNav = (): JSX.Element => {
       <div>Galary</div>
 
       <div
+        className="flex flex-row"
         onClick={() => {
           toast.success("Clicked!");
         }}
@@ -16,6 +18,7 @@ const TopNav = (): JSX.Element => {
           <SignInButton />
         </SignedOut>
         <SignedIn>
+          <UploadButton endpoint="imageUploader" />
           <UserButton />
         </SignedIn>
       </div>
