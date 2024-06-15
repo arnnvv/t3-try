@@ -3,13 +3,15 @@ import { NextRequest } from "next/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { FileUploadData } from "uploadthing/types";
+import db from "~/server/db";
+import { images } from "~/server/db/schema";
 
 const f = createUploadthing();
 
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB" } })
     .middleware(
-      async ({
+      ({
         req,
       }: {
         req: NextRequest;
@@ -18,7 +20,7 @@ export const ourFileRouter = {
       } & {
         files: readonly FileUploadData[];
         input: undefined;
-      }): Promise<{ userId: string }> => {
+      }): { userId: string } => {
         const { userId } = auth();
         if (!userId) throw new UploadThingError("Unauthorized");
         return { userId };
@@ -27,7 +29,10 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("Upload complete for userId:", metadata.userId);
       console.log("file url", file.url);
-      // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
+      await db.insert(images).values({
+        name: file.name,
+        url: file.url,
+      });
       return { uploadedBy: metadata.userId };
     }),
 } satisfies FileRouter;
