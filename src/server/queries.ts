@@ -30,4 +30,18 @@ const getImages = async (): Promise<Image[]> => {
   return images;
 };
 
+export const getImage = async (id: number): Promise<Image> => {
+  const { userId } = auth();
+  if (!userId) throw new Error("Not logged in");
+
+  const image: Image | undefined = await db.query.images.findFirst({
+    where: (model, { eq }) => eq(model.id, id),
+  });
+
+  if (!image) throw new Error("Image not found");
+  if (image.userId !== userId)
+    throw new Error("PLZZ DON'T TRY HACKING ME I'M JUST A KID T_T");
+
+  return image;
+};
 export default getImages;
