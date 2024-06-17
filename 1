@@ -1,6 +1,6 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { type FC } from "react";
-import { deleteImage, getImage } from "~/server/queries";
+import { getImage } from "~/server/queries";
 import { Button } from "./ui/button";
 
 const FullImage: FC<{ photoId: string }> = async (props: {
@@ -32,10 +32,10 @@ const FullImage: FC<{ photoId: string }> = async (props: {
         </div>
 
         <div className="p-2">
-        <form action={ async () => {
+        <form action={() => {
             "use server";
 
-            await deleteImage(photoIdAsNum);
+
           }}>
           <Button
             type="submit"
@@ -43,6 +43,7 @@ const FullImage: FC<{ photoId: string }> = async (props: {
           >Delete</Button>
         </form>
         </div>
+
       </div>
     </div>
   );

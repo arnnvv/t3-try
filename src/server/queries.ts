@@ -1,12 +1,17 @@
 import "server-only";
 import db from "./db";
 import {
+    and,
+    eq,
   type AnyColumn,
   type SQL,
   type SQLWrapper,
   type sql,
 } from "drizzle-orm";
 import { auth } from "@clerk/nextjs/server";
+import { images } from "./db/schema";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const getImages = async (): Promise<Image[]> => {
   const { userId } = auth();
@@ -44,4 +49,12 @@ export const getImage = async (id: number): Promise<Image> => {
 
   return image;
 };
+
+export const deleteImage = async (id: number): Promise<void> => {
+  const { userId } = auth();
+  if (!userId) throw new Error("Not logged in");
+
+  await db.delete(images).where(and(eq(images.id, id), eq(images.userId, userId)));
+  redirect("/");
+}
 export default getImages;
