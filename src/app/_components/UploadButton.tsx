@@ -78,12 +78,17 @@ const SimpleUploadButton: FC = (): JSX.Element => {
   const router = useRouter();
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
-      toast.message('Uploading...');
+      toast('Uploading...', {
+        duration: 100000,
+        id: "upload-start"
+      });
     },
     onUploadError() {
+      toast.dismiss("upload-start");
       toast.error("Upload failed");
     },
     onClientUploadComplete() {
+      toast.dismiss("upload-start");
       toast.success("Upload complete");
       router.refresh();
     },
