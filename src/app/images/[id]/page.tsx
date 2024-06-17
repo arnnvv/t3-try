@@ -1,7 +1,15 @@
-const PhotoModal = ({
+import FullImage from "~/components/FullImage";
+
+const PhotoPage = ({
   params: { id: photoId },
 }: {
   params: { id: string };
-}): JSX.Element => <div>{photoId}</div>;
+}): JSX.Element => {
+  const photoIdAsNum = Number(photoId);
+  if (Number.isNaN(photoIdAsNum))
+    throw new Error(`Invalid photo ID: ${photoId}`);
 
-export default PhotoModal;
+  return <FullImage photoId={photoIdAsNum} />;
+};
+
+export default PhotoPage;

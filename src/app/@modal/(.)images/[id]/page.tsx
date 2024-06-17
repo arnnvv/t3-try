@@ -1,19 +1,18 @@
-import { getImage } from "~/server/queries";
 import Modal from "./modal";
+import FullImage from "~/components/FullImage";
 
-const PhotoModal = async ({
+const PhotoModal = ({
   params: { id: photoId },
 }: {
   params: { id: string };
-}): Promise<JSX.Element> => {
+}): JSX.Element => {
   const photoIdAsNum = Number(photoId);
   if (Number.isNaN(photoIdAsNum))
     throw new Error(`Invalid photo ID: ${photoId}`);
 
-  const image = await getImage(photoIdAsNum);
   return (
     <Modal>
-      <img src={image.url} alt={image.name} className="w-96" />
+      <FullImage photoId={photoIdAsNum} />
     </Modal>
   );
 };
