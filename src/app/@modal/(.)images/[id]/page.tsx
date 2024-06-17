@@ -5,16 +5,10 @@ const PhotoModal = ({
   params: { id: photoId },
 }: {
   params: { id: string };
-}): JSX.Element => {
-  const photoIdAsNum = Number(photoId);
-  if (Number.isNaN(photoIdAsNum))
-    throw new Error(`Invalid photo ID: ${photoId}`);
-
-  return (
-    <Modal>
-      <FullImage photoId={photoIdAsNum} />
-    </Modal>
-  );
-};
+}): JSX.Element => (
+  <Modal>
+    <FullImage photoId={photoId} />
+  </Modal>
+);
 
 export default PhotoModal;

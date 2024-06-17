@@ -4,12 +4,10 @@ const PhotoPage = ({
   params: { id: photoId },
 }: {
   params: { id: string };
-}): JSX.Element => {
-  const photoIdAsNum = Number(photoId);
-  if (Number.isNaN(photoIdAsNum))
-    throw new Error(`Invalid photo ID: ${photoId}`);
-
-  return <FullImage photoId={photoIdAsNum} />;
-};
+}): JSX.Element => (
+  <div className="flex h-full min-h-0 w-full min-w-0 overflow-y-hidden">
+    <FullImage photoId={photoId} />;
+  </div>
+);
 
 export default PhotoPage;
