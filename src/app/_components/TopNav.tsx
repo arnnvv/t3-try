@@ -1,31 +1,23 @@
-"use client";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { UploadButton } from "~/utils/uploadthing";
+import SimpleUploadButton from "./UploadButton";
 
 const TopNav = (): JSX.Element => {
-  const router = useRouter();
   return (
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <div>Galary</div>
 
-      <div
-        className="flex flex-row"
-        onClick={() => {
-          toast.success("Clicked!");
-        }}
-      >
+      <div className="flex flex-row">
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UploadButton
+          <SimpleUploadButton />
+          {/*<UploadButton
             endpoint="imageUploader"
             onClientUploadComplete={() => {
               router.refresh();
             }}
-          />
+          />*/}
           <UserButton />
         </SignedIn>
       </div>
