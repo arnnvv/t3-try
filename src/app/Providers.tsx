@@ -7,13 +7,9 @@ interface ProvidersProps {
 
 const Providers: FC<ProvidersProps> = ({
   children,
-}: ProvidersProps): JSX.Element => {
-  return (
-    <>
+}: ProvidersProps): JSX.Element => <>
       <Toaster position="top-center" richColors />
       {children}
-    </>
-  );
-};
+    </>;
 
 export default Providers;
