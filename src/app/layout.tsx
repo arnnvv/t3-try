@@ -30,24 +30,26 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <ClerkProvider>
-      <html lang="en" className={`${GeistSans.variable}`}>
-        <body className={`font-sans ${inter.variable} flex flex-col gap-4`}>
-          <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          />
-          <TopNav />
-          <Providers>
-            {children}
-            {modal}
+      <html lang="en">
+        <NextSSRPlugin
+          /**
+           * The `extractRouterConfig` will extract **only** the route configs
+           * from the router to prevent additional information from being
+           * leaked to the client. The data passed to the client is the same
+           * as if you were to fetch `/api/uploadthing` directly.
+           */
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
+        <Providers>
+          <body className={`font-sans ${inter.variable} dark`}>
+            <div className="grid h-screen grid-rows-[auto,1fr]">
+              <TopNav />
+              <main className="overflow-y-scroll">{children}</main>
+              {modal}
+            </div>
             <div id="modal-root" />
-          </Providers>
-        </body>
+          </body>
+        </Providers>
       </html>
     </ClerkProvider>
   );
