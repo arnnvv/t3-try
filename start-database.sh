@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
-# Use this script to start a docker container for a local development database
-
-# TO RUN ON WINDOWS:
-# 1. Install WSL (Windows Subsystem for Linux) - https://learn.microsoft.com/en-us/windows/wsl/install
-# 2. Install Docker Desktop for Windows - https://docs.docker.com/docker-for-windows/install/
-# 3. Open WSL - `wsl`
-# 4. Run this script - `./start-database.sh`
-
-# On Linux and macOS you can run this script directly - `./start-database.sh`
 
 DB_CONTAINER_NAME="t3-try-postgres"
 
@@ -27,7 +18,6 @@ if [ "$(docker ps -q -a -f name=$DB_CONTAINER_NAME)" ]; then
 	exit 0
 fi
 
-# import env variables from .env
 set -a
 source .env
 
@@ -41,7 +31,7 @@ if [ "$DB_PASSWORD" = "password" ]; then
 		echo "Please set a password in the .env file and try again"
 		exit 1
 	fi
-	# Generate a random URL-safe password
+
 	DB_PASSWORD=$(openssl rand -base64 12 | tr '+/' '-_')
 	sed -i -e "s#:password@#:$DB_PASSWORD@#" .env
 fi

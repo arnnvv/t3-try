@@ -1,7 +1,6 @@
 import "~/styles/globals.css";
 import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
 import Providers from "./Providers";
 import TopNav from "./_components/TopNav";
 import { ClerkProvider } from "@clerk/nextjs";

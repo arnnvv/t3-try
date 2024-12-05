@@ -12,12 +12,6 @@ const TopNav = (): JSX.Element => {
         </SignedOut>
         <SignedIn>
           <SimpleUploadButton />
-          {/*<UploadButton
-            endpoint="imageUploader"
-            onClientUploadComplete={() => {
-              router.refresh();
-            }}
-          />*/}
           <UserButton />
         </SignedIn>
       </div>

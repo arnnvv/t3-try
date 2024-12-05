@@ -3,7 +3,7 @@ import { type FC } from "react";
 import { deleteImage, getImage } from "~/server/queries";
 import { Button } from "./ui/button";
 
-const FullImage: FC<{ photoId: string }> = async (props: {
+export const FullImage: FC<{ photoId: string }> = async (props: {
   photoId: string;
 }): Promise<JSX.Element> => {
   const photoIdAsNum = Number(props.photoId);
@@ -32,7 +32,7 @@ const FullImage: FC<{ photoId: string }> = async (props: {
         </div>
 
         <div className="p-2">
-        <form action={ async () => {
+        <form action={async () => {
             "use server";
 
             await deleteImage(photoIdAsNum);
@@ -47,5 +47,3 @@ const FullImage: FC<{ photoId: string }> = async (props: {
     </div>
   );
 };
-
-export default FullImage;

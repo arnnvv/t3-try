@@ -4,14 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
-    "dev": "next dev --turbo",
-    "lint": "next lint",
-    "start": "next start"
+    "d": "next dev --turbo",
+    "b": "next build",
+    "l": "next lint",
+    "st": "next start",
+    "dg": "drizzle-kit generate",
+    "dm": "drizzle-kit migrate",
+    "dp": "drizzle-kit pull",
+    "ds": "drizzle-kit studio"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.2.0",

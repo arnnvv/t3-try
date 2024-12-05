@@ -1,5 +1,5 @@
+import { FullImage } from "~/components/FullImage";
 import Modal from "./modal";
-import FullImage from "~/components/FullImage";
 
 const PhotoModal = ({
   params: { id: photoId },

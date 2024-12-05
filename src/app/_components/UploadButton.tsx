@@ -61,13 +61,12 @@ const useUploadThingInputProps = (
     const result = await $ut.startUpload(selectedFiles);
 
     console.log("uploaded files", result);
-    // TODO: persist result in state maybe?
   };
 
   return {
     inputProps: {
       onChange,
-      multiple: ($ut.permittedFileInfo?.config?.image?.maxFileCount ?? 1) > 1,
+      multiple: ($ut.routeConfig?.image?.maxFileCount ?? 1) > 1,
       accept: "image/*",
     },
     isUploading: $ut.isUploading,
